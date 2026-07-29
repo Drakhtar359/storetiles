@@ -4,16 +4,16 @@
 :root {
   --primary: #0f172a;       /* Sophisticated deep slate */
   --primary-rgb: 15, 23, 42;
-  --accent: #c5a880;        /* Premium warm gold/brass */
-  --accent-hover: #b09168;  /* Slightly darker brass */
-  --accent-light: #f5efe6;  /* Soft sand/cream tint */
-  --text-dark: #1e293b;     /* Dark slate for high readability */
-  --text-light: #f8fafc;    /* Off-white */
-  --text-muted: #64748b;    /* Cool grey for descriptions */
+  --accent: #507B8C;        /* Signature Aqua */
+  --accent-hover: #3d5e6c;  /* Darker Aqua */
+  --accent-light: #eef3f5;  /* Soft Aqua tint (replaces beige) */
+  --text-dark: #1e293b;     /* Dark slate for text */
+  --text-light: #ffffff;    /* Pure White */
+  --text-muted: #898989;    /* Darker Grey for descriptions */
   
-  --bg-light: #faf9f6;      /* Off-white warm background */
+  --bg-light: #ffffff;      /* Pure White background */
   --bg-card: #ffffff;
-  --bg-dark: #090d16;       /* Luxury dark background */
+  --bg-dark: #090d16;       /* Dark mode background */
   
   --font-serif: 'Montserrat', sans-serif;
   --font-sans: 'Montserrat', sans-serif;
@@ -23,7 +23,7 @@
   --shadow-lg: 0 20px 40px -10px rgba(15, 23, 42, 0.12), 0 12px 20px -8px rgba(15, 23, 42, 0.12);
   --shadow-glass: 0 8px 32px 0 rgba(15, 23, 42, 0.06);
   
-  --border-color: #e2e8f0;
+  --border-color: #cacaca;
   --border-radius-sm: 6px;
   --border-radius-md: 12px;
   --border-radius-lg: 24px;
