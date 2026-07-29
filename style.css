@@ -1526,8 +1526,8 @@ footer {
 
 /* 3D Scene Wrapper */
 .scene-3d {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   perspective: 400px;
   display: flex;
   align-items: center;
