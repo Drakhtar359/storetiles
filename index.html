@@ -220,6 +220,151 @@
 
 
 
+  <!-- GLOBAL SOURCING SECTION -->
+  <section class="sourcing" id="products-sourcing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Global Sourcing</span>
+        <h2 class="section-title">Our Product Origins</h2>
+        <p>We source our sanitary sets, luxury tiles, water mixers, and adhesives from the world's leading manufacturing hubs, bringing global excellence directly to Lebanon.</p>
+      </div>
+
+      <div class="sourcing-container">
+        <!-- Stylized Map Column -->
+        <div class="map-wrapper">
+          <svg viewBox="0 0 1000 550" class="sourcing-map">
+            <defs>
+              <!-- Glow Filter -->
+              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+
+            <!-- Coordinate Grid Lines -->
+            <g class="grid-lines">
+              <line x1="50" y1="100" x2="950" y2="100" />
+              <line x1="50" y1="200" x2="950" y2="200" />
+              <line x1="50" y1="300" x2="950" y2="300" />
+              <line x1="50" y1="400" x2="950" y2="400" />
+              
+              <line x1="200" y1="50" x2="200" y2="500" />
+              <line x1="400" y1="50" x2="400" y2="500" />
+              <line x1="600" y1="50" x2="600" y2="500" />
+              <line x1="800" y1="50" x2="800" y2="500" />
+            </g>
+
+            <!-- Stylized Continental Outlines (Eurasia & Africa) -->
+            <path class="map-landmass" d="M 80 180 Q 200 80 350 120 T 600 130 T 800 110 T 960 160 L 960 320 Q 900 380 750 420 T 580 360 T 420 310 Z" />
+            <path class="map-landmass" d="M 160 280 Q 320 290 350 380 T 300 530 L 220 440 Z" />
+
+            <!-- Connection Routes -->
+            <!-- Spain -->
+            <path class="sourcing-route" d="M 150 240 Q 315 180 480 300" />
+            <path class="sourcing-flow" d="M 150 240 Q 315 180 480 300" />
+
+            <!-- Italy -->
+            <path class="sourcing-route" d="M 280 210 Q 380 150 480 300" />
+            <path class="sourcing-flow" d="M 280 210 Q 380 150 480 300" />
+
+            <!-- Germany -->
+            <path class="sourcing-route" d="M 320 140 Q 390 120 480 300" />
+            <path class="sourcing-flow" d="M 320 140 Q 390 120 480 300" />
+
+            <!-- Turkey -->
+            <path class="sourcing-route" d="M 450 230 Q 465 200 480 300" />
+            <path class="sourcing-flow" d="M 450 230 Q 465 200 480 300" />
+
+            <!-- Libya -->
+            <path class="sourcing-route" d="M 280 380 Q 370 300 480 300" />
+            <path class="sourcing-flow" d="M 280 380 Q 370 300 480 300" />
+
+            <!-- Saudi Arabia -->
+            <path class="sourcing-route" d="M 580 400 Q 530 330 480 300" />
+            <path class="sourcing-flow" d="M 580 400 Q 530 330 480 300" />
+
+            <!-- UAE -->
+            <path class="sourcing-route" d="M 660 380 Q 570 310 480 300" />
+            <path class="sourcing-flow" d="M 660 380 Q 570 310 480 300" />
+
+            <!-- India -->
+            <path class="sourcing-route" d="M 780 400 Q 630 250 480 300" />
+            <path class="sourcing-flow" d="M 780 400 Q 630 250 480 300" />
+
+            <!-- China -->
+            <path class="sourcing-route" d="M 870 270 Q 680 180 480 300" />
+            <path class="sourcing-flow" d="M 870 270 Q 680 180 480 300" />
+
+            <!-- Korea -->
+            <path class="sourcing-route" d="M 940 200 Q 710 130 480 300" />
+            <path class="sourcing-flow" d="M 940 200 Q 710 130 480 300" />
+
+            <!-- Source Country Pins -->
+            <g class="map-pins">
+              <!-- Spain -->
+              <circle cx="150" cy="240" r="5" class="pin-node" />
+              <text x="150" y="225" class="pin-label">Spain</text>
+
+              <!-- Italy -->
+              <circle cx="280" cy="210" r="5" class="pin-node" />
+              <text x="280" y="195" class="pin-label">Italy</text>
+
+              <!-- Germany -->
+              <circle cx="320" cy="140" r="5" class="pin-node" />
+              <text x="320" y="125" class="pin-label">Germany</text>
+
+              <!-- Turkey -->
+              <circle cx="450" cy="230" r="5" class="pin-node" />
+              <text x="450" y="215" class="pin-label">Turkey</text>
+
+              <!-- Libya -->
+              <circle cx="280" cy="380" r="5" class="pin-node" />
+              <text x="280" y="405" class="pin-label">Libya</text>
+
+              <!-- Saudi Arabia -->
+              <circle cx="580" cy="400" r="5" class="pin-node" />
+              <text x="580" y="420" class="pin-label">Saudi Arabia</text>
+
+              <!-- UAE -->
+              <circle cx="660" cy="380" r="5" class="pin-node" />
+              <text x="660" y="365" class="pin-label">UAE</text>
+
+              <!-- India -->
+              <circle cx="780" cy="400" r="5" class="pin-node" />
+              <text x="780" y="420" class="pin-label">India</text>
+
+              <!-- China -->
+              <circle cx="870" cy="270" r="5" class="pin-node" />
+              <text x="870" y="255" class="pin-label">China</text>
+
+              <!-- Korea -->
+              <circle cx="940" cy="200" r="5" class="pin-node" />
+              <text x="940" y="185" class="pin-label">Korea</text>
+
+              <!-- Destination: Lebanon (Showroom) -->
+              <circle cx="480" cy="300" r="8" class="pin-destination" filter="url(#glow)" />
+              <circle cx="480" cy="300" r="15" class="pin-destination-pulse" />
+              <text x="480" y="280" class="destination-label">LEBANON (Showroom)</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Description Info Column -->
+        <div class="sourcing-info">
+          <h3>Curated Sourcing from 10 Global Partners</h3>
+          <p>
+            At Store Tiles - S.A.R.L, we believe that premium architectural finishes require a global standard of manufacturing. That is why we do not limit our inventory to a single source. Instead, we select each product line from the country that defines its craftsmanship.
+          </p>
+          <ul class="sourcing-list">
+            <li><strong>European Design (Spain, Italy, Germany)</strong>: We source our luxury marble-look tiles, high-end porcelain slabs, and advanced sanitary sets from Spain and Italy, and precision bathroom engineering components from Germany.</li>
+            <li><strong>Middle East &amp; Mediterranean (Turkey, Libya, Saudi Arabia, UAE)</strong>: Bringing regional stone materials, heavy-duty bathroom fittings, and durable tile adhesives directly from regional trade leaders.</li>
+            <li><strong>Asian Innovation (India, China, Korea)</strong>: Sourcing next-generation large-format ceramic slabs, contemporary water mixers, and advanced water-proofing sealants from Asia's tech-driven manufacturing centers.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT & SHOWROOM SECTION -->
   <section class="contact" id="contact">
     <div class="container">
