@@ -1671,38 +1671,19 @@ footer {
   stroke: var(--text-muted) !important;
   stroke-opacity: 0.35 !important;
   stroke-width: 0.8px !important;
-  transition: fill 0.35s ease, stroke-opacity 0.35s ease, stroke 0.35s ease;
-}
-
-.land:hover {
-  fill: rgba(80, 123, 140, 0.08) !important;
-  stroke: var(--accent) !important;
-  stroke-opacity: 0.75 !important;
+  pointer-events: none !important;
 }
 
 .sourcing-route {
   fill: none;
   stroke: var(--accent);
   stroke-width: 1.5;
-  opacity: 0.3;
+  opacity: 0.55;
 }
 
-.sourcing-flow {
-  fill: none;
-  stroke: #ffffff;
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  stroke-dasharray: 8, 40;
-  animation: flowMove 6s linear infinite;
-}
-
-@keyframes flowMove {
-  from {
-    stroke-dashoffset: 300;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
+.sourcing-flow,
+.pin-destination-pulse {
+  display: none !important;
 }
 
 /* Pins and Labels */
@@ -1710,6 +1691,7 @@ footer {
   fill: var(--accent);
   stroke: rgba(255, 255, 255, 0.8);
   stroke-width: 1.5;
+  pointer-events: none;
 }
 
 .pin-label {
@@ -1718,31 +1700,14 @@ footer {
   font-family: var(--font-sans);
   font-weight: 600;
   text-anchor: middle;
+  pointer-events: none;
 }
 
 .pin-destination {
   fill: #ffffff;
   stroke: var(--accent);
   stroke-width: 2.5;
-}
-
-.pin-destination-pulse {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 1.5;
-  opacity: 0.8;
-  animation: pulseDestination 2.5s ease-out infinite;
-}
-
-@keyframes pulseDestination {
-  0% {
-    transform: scale(0.6);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2.2);
-    opacity: 0;
-  }
+  pointer-events: none;
 }
 
 .destination-label {
