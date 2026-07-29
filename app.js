@@ -189,16 +189,20 @@ document.addEventListener('DOMContentLoaded', () => {
       container.appendChild(renderer.domElement);
       
       // Lighting
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.65);
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.85); // High ambient light to avoid pitch black shadows
       scene.add(ambientLight);
       
-      const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.95);
-      dirLight1.position.set(5, 8, 5);
+      const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.1);
+      dirLight1.position.set(5, 10, 5);
       scene.add(dirLight1);
 
-      const dirLight2 = new THREE.DirectionalLight(0x507B8C, 0.55); // Aqua accent light
-      dirLight2.position.set(-5, -3, 2);
+      const dirLight2 = new THREE.DirectionalLight(0x507B8C, 0.6); // Aqua backfill highlights
+      dirLight2.position.set(-5, -2, 2);
       scene.add(dirLight2);
+      
+      const headLight = new THREE.DirectionalLight(0xffffff, 0.7); // Headlight to illuminate front details
+      headLight.position.set(0, 0, 6);
+      scene.add(headLight);
       
       const modelGroup = new THREE.Group();
       
@@ -245,48 +249,54 @@ document.addEventListener('DOMContentLoaded', () => {
         camera.lookAt(0, 0, 0);
         
       } else if (product === 'mixer') {
-        // High-fidelity Water Mixer Faucet
-        const chromeMat = new THREE.MeshStandardMaterial({ color: 0xdddddd, metalness: 1.0, roughness: 0.08 });
+        // Continuous, high-fidelity Water Mixer Faucet using TubeGeometry
+        const chromeMat = new THREE.MeshStandardMaterial({ 
+          color: 0xe5eaec, // bright light-grey silver
+          metalness: 0.85, 
+          roughness: 0.22 
+        });
         
-        // Vertical body base
-        const bodyGeom = new THREE.CylinderGeometry(0.28, 0.28, 2.2, 32);
-        const mainBody = new THREE.Mesh(bodyGeom, chromeMat);
-        mainBody.position.y = -0.1;
-        modelGroup.add(mainBody);
+        // Define points for gooseneck faucet curve
+        const curvePoints = [];
+        curvePoints.push(new THREE.Vector3(-0.3, -1.1, 0)); // base offset
+        curvePoints.push(new THREE.Vector3(-0.3, 0.4, 0));  // straight column
+        curvePoints.push(new THREE.Vector3(-0.25, 0.9, 0)); // bend starts
+        curvePoints.push(new THREE.Vector3(0.15, 1.25, 0)); // arch top
+        curvePoints.push(new THREE.Vector3(0.65, 0.85, 0)); // spout down-arch
+        curvePoints.push(new THREE.Vector3(0.7, 0.35, 0));  // spout tip
         
-        // Curved neck (spout arch)
-        const torusGeom = new THREE.TorusGeometry(0.8, 0.18, 16, 64, Math.PI / 1.1);
-        const neck = new THREE.Mesh(torusGeom, chromeMat);
-        neck.position.set(0.68, 0.8, 0);
-        neck.rotation.z = -Math.PI / 6;
-        modelGroup.add(neck);
+        const curve = new THREE.CatmullRomCurve3(curvePoints);
+        const tubeGeom = new THREE.TubeGeometry(curve, 40, 0.24, 16, false);
+        const faucetNeck = new THREE.Mesh(tubeGeom, chromeMat);
+        modelGroup.add(faucetNeck);
         
-        // Spout head pointing down
-        const headGeom = new THREE.CylinderGeometry(0.18, 0.18, 0.35, 24);
-        const head = new THREE.Mesh(headGeom, chromeMat);
-        head.position.set(1.4, 0.3, 0);
-        modelGroup.add(head);
-        
-        // Modern control lever/handle
-        const jointGeom = new THREE.SphereGeometry(0.2, 16, 16);
-        const joint = new THREE.Mesh(jointGeom, chromeMat);
-        joint.position.set(0, 0.8, 0);
-        modelGroup.add(joint);
-        
-        const leverGeom = new THREE.CylinderGeometry(0.06, 0.06, 0.8, 12);
-        const lever = new THREE.Mesh(leverGeom, chromeMat);
-        lever.position.set(-0.35, 1.1, 0);
-        lever.rotation.z = Math.PI / 4;
-        modelGroup.add(lever);
-        
-        // Base collar
-        const baseGeom = new THREE.CylinderGeometry(0.45, 0.45, 0.12, 32);
+        // Base plate collar
+        const baseGeom = new THREE.CylinderGeometry(0.5, 0.5, 0.12, 32);
         const base = new THREE.Mesh(baseGeom, chromeMat);
-        base.position.y = -1.2;
+        base.position.set(-0.3, -1.1, 0);
         modelGroup.add(base);
         
-        camera.position.set(0, 0.4, 5.0);
-        camera.lookAt(0, 0.2, 0);
+        // Spout tip aerator collar
+        const tipGeom = new THREE.CylinderGeometry(0.26, 0.26, 0.22, 24);
+        const tip = new THREE.Mesh(tipGeom, chromeMat);
+        tip.position.set(0.7, 0.35, 0);
+        modelGroup.add(tip);
+        
+        // Modern control lever/handle (on the column side)
+        const jointGeom = new THREE.SphereGeometry(0.18, 16, 16);
+        const joint = new THREE.Mesh(jointGeom, chromeMat);
+        joint.position.set(-0.3, 0.0, 0.24); // side mounting
+        modelGroup.add(joint);
+        
+        const leverGeom = new THREE.CylinderGeometry(0.05, 0.05, 0.65, 12);
+        const lever = new THREE.Mesh(leverGeom, chromeMat);
+        lever.position.set(-0.3, 0.3, 0.35);
+        lever.rotation.x = Math.PI / 6;
+        lever.rotation.z = -Math.PI / 12;
+        modelGroup.add(lever);
+        
+        camera.position.set(0, 0.3, 5.0);
+        camera.lookAt(0, 0.1, 0);
         
       } else if (product === 'adhesive') {
         // High-fidelity Cement / Adhesive Bag
