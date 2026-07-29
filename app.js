@@ -188,25 +188,25 @@ document.addEventListener('DOMContentLoaded', () => {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       container.appendChild(renderer.domElement);
       
-      // Lighting
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.85); // High ambient light to avoid pitch black shadows
-      scene.add(ambientLight);
-      
-      const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.1);
-      dirLight1.position.set(5, 10, 5);
-      scene.add(dirLight1);
-
-      const dirLight2 = new THREE.DirectionalLight(0x507B8C, 0.6); // Aqua backfill highlights
-      dirLight2.position.set(-5, -2, 2);
-      scene.add(dirLight2);
-      
-      const headLight = new THREE.DirectionalLight(0xffffff, 0.7); // Headlight to illuminate front details
-      headLight.position.set(0, 0, 6);
-      scene.add(headLight);
-      
       const modelGroup = new THREE.Group();
       
       if (product === 'bath') {
+        // Soft defined lighting for matte ceramic and cabinet details
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
+        scene.add(ambientLight);
+        
+        const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.85);
+        dirLight1.position.set(4, 7, 4);
+        scene.add(dirLight1);
+        
+        const dirLight2 = new THREE.DirectionalLight(0x507B8C, 0.3); // Soft Aqua
+        dirLight2.position.set(-4, -2, 2);
+        scene.add(dirLight2);
+        
+        const headLight = new THREE.DirectionalLight(0xffffff, 0.25); // Subtle headlight for curvature definition
+        headLight.position.set(0, 0, 6);
+        scene.add(headLight);
+
         // Cabinet base
         const cabGeom = new THREE.BoxGeometry(2.1, 1.2, 1.3);
         const cabMat = new THREE.MeshStandardMaterial({ color: 0x898989, roughness: 0.5, metalness: 0.15 });
@@ -216,14 +216,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Countertop
         const counterGeom = new THREE.BoxGeometry(2.2, 0.12, 1.4);
-        const counterMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.2, metalness: 0.1 });
+        const counterMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.25, metalness: 0.05 });
         const counter = new THREE.Mesh(counterGeom, counterMat);
         counter.position.y = 0.16;
         modelGroup.add(counter);
         
         // Ceramic Basin (rounded bowl shape)
         const basinGeom = new THREE.CylinderGeometry(0.65, 0.5, 0.35, 24, 1, false);
-        const basinMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.05, metalness: 0.05 });
+        const basinMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.1, metalness: 0.02 });
         const basin = new THREE.Mesh(basinGeom, basinMat);
         basin.position.y = 0.4;
         modelGroup.add(basin);
@@ -249,6 +249,22 @@ document.addEventListener('DOMContentLoaded', () => {
         camera.lookAt(0, 0, 0);
         
       } else if (product === 'mixer') {
+        // Bright metallic lighting for chrome faucet
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+        scene.add(ambientLight);
+        
+        const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.1);
+        dirLight1.position.set(5, 8, 5);
+        scene.add(dirLight1);
+        
+        const dirLight2 = new THREE.DirectionalLight(0x507B8C, 0.65);
+        dirLight2.position.set(-5, -2, 2);
+        scene.add(dirLight2);
+        
+        const headLight = new THREE.DirectionalLight(0xffffff, 0.65);
+        headLight.position.set(0, 0, 6);
+        scene.add(headLight);
+
         // Continuous, high-fidelity Water Mixer Faucet using TubeGeometry
         const chromeMat = new THREE.MeshStandardMaterial({ 
           color: 0xe5eaec, // bright light-grey silver
@@ -299,21 +315,42 @@ document.addEventListener('DOMContentLoaded', () => {
         camera.lookAt(0, 0.1, 0);
         
       } else if (product === 'adhesive') {
-        // High-fidelity Cement / Adhesive Bag
-        const bagGeom = new THREE.BoxGeometry(1.6, 2.3, 0.7, 3, 5, 3);
+        // Defined soft lighting to prevent paper sack washout
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
+        scene.add(ambientLight);
         
-        // Pinch the top & bottom margins of the bag geometry in code to look organic
+        const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.75);
+        dirLight1.position.set(3, 6, 3);
+        scene.add(dirLight1);
+        
+        const dirLight2 = new THREE.DirectionalLight(0x507B8C, 0.25);
+        dirLight2.position.set(-3, -2, 2);
+        scene.add(dirLight2);
+        
+        const headLight = new THREE.DirectionalLight(0xffffff, 0.25);
+        headLight.position.set(0, 0, 6);
+        scene.add(headLight);
+
+        // Puffy paper sack geometry with 8 subdivisions
+        const bagGeom = new THREE.BoxGeometry(1.6, 2.3, 0.7, 8, 8, 8);
+        
         const pos = bagGeom.attributes.position;
         for (let i = 0; i < pos.count; i++) {
+          let x = pos.getX(i);
           let y = pos.getY(i);
           let z = pos.getZ(i);
-          let x = pos.getX(i);
           
-          // Pinch towards top and bottom
-          if (Math.abs(y) > 0.6) {
-            let factor = 1.0 - (Math.abs(y) - 0.6) * 0.7;
-            pos.setZ(i, z * factor);
-            pos.setX(i, x * (1.0 - (Math.abs(y) - 0.6) * 0.3));
+          // Parabolic bulge factor (1 at center y=0, 0 at top/bottom y=±1.15)
+          let dy = y / 1.15;
+          let bulge = 1.0 - dy * dy;
+          
+          // Bulge Z (thickness) and X (width) to look pillowed in the center
+          pos.setZ(i, z * (0.5 + 0.8 * bulge));
+          pos.setX(i, x * (0.95 + 0.12 * bulge));
+          
+          // Fold the extreme top/bottom edges flat
+          if (Math.abs(y) > 1.05) {
+            pos.setZ(i, z * 0.22);
           }
         }
         bagGeom.computeVertexNormals();
@@ -363,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillText('CLASS C2TE - 25 KG', 128, 235);
         
         const texture = new THREE.CanvasTexture(texCanvas);
-        const bagMat = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.95, metalness: 0.05 });
+        const bagMat = new THREE.MeshStandardMaterial({ map: texture, roughness: 1.0, metalness: 0.0 });
         const bag = new THREE.Mesh(bagGeom, bagMat);
         modelGroup.add(bag);
         
