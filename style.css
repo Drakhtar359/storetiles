@@ -1646,26 +1646,24 @@ footer {
 
 .map-wrapper {
   background-color: transparent;
-  border-radius: var(--border-radius-lg);
-  padding: 1.5rem;
+  padding: 0;
   border: none;
   box-shadow: none;
   overflow: hidden;
-  max-width: 950px;
+  max-width: 750px;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#svg-map-injected {
-  width: 100%;
-  height: auto;
-}
-
-#svg-map-injected svg {
+.map-wrapper svg {
   display: block;
   width: 100%;
   height: auto;
   background: transparent;
 }
+
 
 /* amCharts world.svg land path styling override */
 .land {
