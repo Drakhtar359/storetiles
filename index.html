@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Meta Tags -->
-  <title>Beirut Heritage Tiles | Premium Cement & Marble Collections</title>
-  <meta name="description" content="Explore Beirut Heritage Tiles. Hand-pressed traditional cement tiles, Levant marble, and modern terrazzo crafted for premium residential and commercial spaces in Lebanon.">
-  <meta name="keywords" content="tiles lebanon, cement tiles beirut, traditional lebanese tiles, marble lebanon, terrazzo beirut, luxury tiles lebanon">
-  <meta name="author" content="Beirut Heritage Tiles">
+  <title>Store Tiles - S.A.R.L | Premium Cement & Marble Collections</title>
+  <meta name="description" content="Explore Store Tiles - S.A.R.L. Hand-pressed traditional cement tiles, Levant marble, and modern terrazzo crafted for premium residential and commercial spaces in Lebanon.">
+  <meta name="keywords" content="tiles lebanon, store tiles, cement tiles beirut, traditional lebanese tiles, marble lebanon, terrazzo beirut, luxury tiles lebanon">
+  <meta name="author" content="Store Tiles - S.A.R.L">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Beirut Heritage Tiles | Premium Cement & Marble">
+  <meta property="og:title" content="Store Tiles - S.A.R.L | Premium Cement & Marble">
   <meta property="og:description" content="Traditional hand-pressed cement tiles, Levant marble, and modern terrazzo crafted for luxury spaces in Lebanon.">
   <meta property="og:image" content="assets/hero_showroom.jpg">
 
@@ -25,8 +25,8 @@
   <header id="site-header">
     <div class="container header-container">
       <a href="#hero" class="logo" id="logo-link">
-        <img src="assets/logo.png" alt="Beirut Heritage Tiles Logo" class="logo-img">
-        <div class="logo-text">BEIRUT<span>HERITAGE</span></div>
+        <img src="assets/logo.png" alt="Store Tiles - S.A.R.L Logo" class="logo-img">
+        <div class="logo-text">STORE TILES <span>S.A.R.L</span></div>
       </a>
       
       <nav>
@@ -34,7 +34,6 @@
           <li class="nav-item active"><a href="#hero">Home</a></li>
           <li class="nav-item"><a href="#heritage">Our Story</a></li>
           <li class="nav-item"><a href="#collections">Collections</a></li>
-          <li class="nav-item"><a href="#visualizer">Visualizer</a></li>
           <li class="nav-item"><a href="#contact">Showroom</a></li>
         </ul>
       </nav>
@@ -47,7 +46,7 @@
           </svg>
         </button>
         
-        <a href="#visualizer" class="btn btn-primary" style="padding: 0.6rem 1.25rem; font-size: 0.85rem;" id="cta-nav">Design Grid</a>
+        <a href="#contact" class="btn btn-primary" style="padding: 0.6rem 1.25rem; font-size: 0.85rem;" id="cta-nav">Request Quote</a>
         
         <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
           <span></span>
@@ -75,7 +74,7 @@
         </p>
         <div class="hero-actions">
           <a href="#collections" class="btn btn-primary" id="btn-hero-collections">Explore Gallery</a>
-          <a href="#visualizer" class="btn btn-outline" id="btn-hero-visualizer">Interactive Studio</a>
+          <a href="#contact" class="btn btn-outline" id="btn-hero-visualizer">Visit Showroom</a>
         </div>
       </div>
       
@@ -244,81 +243,7 @@
     </div>
   </section>
 
-  <!-- INTERACTIVE TILE VISUALIZER SECTION -->
-  <section class="visualizer" id="visualizer">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">Design Studio</span>
-        <h2 class="section-title">Interactive Tile Visualizer</h2>
-        <p>Compose your own floor layout in real-time. Pick a tile design, customize grout colors and thickness, and rotate tiles to explore repeating geometric patterns.</p>
-      </div>
-      
-      <div class="visualizer-grid">
-        <!-- Control Panel -->
-        <div class="visualizer-controls" id="visualizer-inputs">
-          
-          <!-- Pattern Selector -->
-          <div class="control-group">
-            <label class="control-label">Select Pattern Style</label>
-            <div class="pattern-options">
-              <div class="pattern-chip active" data-pattern="traditional">Heritage</div>
-              <div class="pattern-chip" data-pattern="marble">Marble</div>
-              <div class="pattern-chip" data-pattern="terrazzo">Terrazzo</div>
-            </div>
-          </div>
-          
-          <!-- Grout Color Selector -->
-          <div class="control-group">
-            <label class="control-label">Grout Color</label>
-            <div class="color-options">
-              <div class="color-dot active" data-color="#dddddd" style="color: #dddddd;" title="Standard Grey"></div>
-              <div class="color-dot" data-color="#ffffff" style="color: #ffffff; border-color: rgba(0,0,0,0.1) !important;" title="Pure White"></div>
-              <div class="color-dot" data-color="#334155" style="color: #334155;" title="Slate Charcoal"></div>
-              <div class="color-dot" data-color="#c5a880" style="color: #c5a880;" title="Sienna Brass"></div>
-            </div>
-          </div>
-          
-          <!-- Grout Thickness Quick Selector -->
-          <div class="control-group">
-            <label class="control-label">Grout Width (Quick)</label>
-            <div class="grout-options">
-              <div class="grout-chip active" data-grout="4">4mm Classic</div>
-              <div class="grout-chip" data-grout="1">1mm Seamless</div>
-            </div>
-          </div>
-          
-          <!-- Grout Thickness Slider -->
-          <div class="control-group">
-            <label class="control-label">Fine Tune Grout Width</label>
-            <div class="slider-container">
-              <input type="range" id="grout-size" min="0" max="12" value="4" step="1">
-              <span class="slider-val" id="grout-val">4px</span>
-            </div>
-          </div>
-          
-          <!-- Reset Layout -->
-          <button class="btn-reset" id="btn-reset">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
-            </svg>
-            Reset Layout Grid
-          </button>
-        </div>
-        
-        <!-- Display Canvas Area -->
-        <div class="visualizer-display">
-          <div class="visualizer-tips">
-            💡 <strong>Interact:</strong> Click individual tiles in the grid below to rotate them by 90° and align patterns dynamically!
-          </div>
-          <div class="grid-canvas-wrapper">
-            <div class="grid-canvas" id="grid-canvas">
-              <!-- Grid items populated dynamically via JavaScript -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- CONTACT & SHOWROOM SECTION -->
   <section class="contact" id="contact">
@@ -352,7 +277,7 @@
             <div class="contact-icon">✉</div>
             <div class="contact-details">
               <h4>Email Inquiries</h4>
-              <p>info@beirutheritagetiles.com<br>custom@beirutheritagetiles.com</p>
+              <p>info@storetiles.com<br>custom@storetiles.com</p>
             </div>
           </div>
           
@@ -374,7 +299,7 @@
             <div class="map-pin">
               <div class="pin-circle"></div>
               <div class="pin-card">
-                <h5>Beirut Heritage Tiles</h5>
+                <h5>Store Tiles - S.A.R.L</h5>
                 <p>Gouraud St, Gemmayzeh Showroom</p>
               </div>
             </div>
@@ -410,8 +335,8 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="logo">
-            <img src="assets/logo.png" alt="Beirut Heritage Tiles Logo" class="logo-img">
-            <div class="logo-text" style="color: var(--text-light);">BEIRUT<span>HERITAGE</span></div>
+            <img src="assets/logo.png" alt="Store Tiles - S.A.R.L Logo" class="logo-img">
+            <div class="logo-text" style="color: var(--text-light);">STORE TILES <span>S.A.R.L</span></div>
           </div>
           <p>Preserving Lebanese architectural heritage and hand-crafted stone traditions since the late 19th century.</p>
           <div class="footer-socials">
@@ -432,10 +357,9 @@
         </div>
         
         <div class="footer-links">
-          <h4>Studio</h4>
+          <h4>Links</h4>
           <ul>
             <li><a href="#heritage">Artisan Story</a></li>
-            <li><a href="#visualizer">Floor Visualizer</a></li>
             <li><a href="#contact">Showroom Map</a></li>
             <li><a href="#contact">Contact Us</a></li>
           </ul>
@@ -452,7 +376,7 @@
       </div>
       
       <div class="footer-bottom">
-        <div>&copy; 2026 Beirut Heritage Tiles Co. All rights reserved. Built in Beirut, Lebanon.</div>
+        <div>&copy; 2026 Store Tiles - S.A.R.L. All rights reserved. Built in Beirut, Lebanon.</div>
         <div>Privacy Policy &bull; Terms of Service</div>
       </div>
     </div>

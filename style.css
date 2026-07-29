@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 /* --- DESIGN SYSTEM & TOKENS --- */
 :root {
@@ -15,8 +15,8 @@
   --bg-card: #ffffff;
   --bg-dark: #090d16;       /* Luxury dark background */
   
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Montserrat', sans-serif;
+  --font-sans: 'Montserrat', sans-serif;
   
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 16px -6px rgba(15, 23, 42, 0.08);
@@ -116,26 +116,24 @@ header {
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(250, 249, 246, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #ffffff;
   border-bottom: 1px solid rgba(226, 232, 240, 0.5);
   transition: var(--transition-normal);
 }
 
 header.scrolled {
-  background: rgba(250, 249, 246, 0.95);
+  background: #ffffff;
   box-shadow: var(--shadow-sm);
   padding: 0.5rem 0;
 }
 
 body.dark-mode header {
-  background: rgba(9, 13, 22, 0.8);
+  background: #090d16;
   border-bottom: 1px solid rgba(30, 41, 59, 0.5);
 }
 
 body.dark-mode header.scrolled {
-  background: rgba(9, 13, 22, 0.95);
+  background: #090d16;
 }
 
 .header-container {
