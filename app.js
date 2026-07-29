@@ -420,4 +420,145 @@ document.addEventListener('DOMContentLoaded', () => {
       animateModel();
     });
   }
+
+  // --- WORLD MAP LOADER & ROUTING ---
+  function loadWorldMap() {
+    fetch('assets/world.svg')
+      .then(response => response.text())
+      .then(svgText => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(svgText, 'image/svg+xml');
+        const newSvg = doc.querySelector('svg');
+        
+        const container = document.getElementById('svg-map-injected');
+        if (container && newSvg) {
+          container.appendChild(newSvg);
+          drawSourcingRoutes(newSvg);
+        }
+      })
+      .catch(err => console.error('Error loading world map:', err));
+  }
+
+  function drawSourcingRoutes(mapSvg) {
+    // Set viewbox to ensure scalability
+    mapSvg.setAttribute('viewBox', '0 0 1008 650');
+    mapSvg.setAttribute('width', '100%');
+    mapSvg.setAttribute('height', '100%');
+    
+    // Add glow filter to mapSvg defs
+    let defs = mapSvg.querySelector('defs');
+    if (!defs) {
+      defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      mapSvg.insertBefore(defs, mapSvg.firstChild);
+    }
+    
+    const filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+    filter.id = 'glow';
+    filter.setAttribute('x', '-20%');
+    filter.setAttribute('y', '-20%');
+    filter.setAttribute('width', '140%');
+    filter.setAttribute('height', '140%');
+    filter.innerHTML = `
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    `;
+    defs.appendChild(filter);
+    
+    const destId = 'LB'; // Lebanon
+    const sourceIds = ['ES', 'IT', 'DE', 'TR', 'LY', 'SA', 'AE', 'IN', 'CN', 'KR'];
+    
+    const destPath = mapSvg.querySelector(`#${destId}`);
+    if (!destPath) return;
+    const destBBox = destPath.getBBox();
+    const destX = destBBox.x + destBBox.width / 2;
+    const destY = destBBox.y + destBBox.height / 2;
+    
+    const overlayGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    overlayGroup.id = 'sourcing-overlay';
+    mapSvg.appendChild(overlayGroup);
+    
+    // Draw destination pin for Lebanon
+    createPin(overlayGroup, destX, destY, 'LEBANON', true);
+    
+    sourceIds.forEach(id => {
+      const sourcePath = mapSvg.querySelector(`#${id}`);
+      if (!sourcePath) return;
+      
+      const bbox = sourcePath.getBBox();
+      const sourceX = bbox.x + bbox.width / 2;
+      const sourceY = bbox.y + bbox.height / 2;
+      
+      const title = sourcePath.getAttribute('title') || id;
+      
+      // Draw source pin
+      createPin(overlayGroup, sourceX, sourceY, title, false);
+      
+      // Draw curve and flowing light
+      createRoute(overlayGroup, sourceX, sourceY, destX, destY);
+    });
+  }
+
+  function createPin(group, x, y, label, isDest) {
+    const ns = 'http://www.w3.org/2000/svg';
+    
+    if (isDest) {
+      // Pulse ring
+      const pulse = document.createElementNS(ns, 'circle');
+      pulse.setAttribute('cx', x);
+      pulse.setAttribute('cy', y);
+      pulse.setAttribute('r', 15);
+      pulse.setAttribute('class', 'pin-destination-pulse');
+      pulse.style.transformOrigin = `${x}px ${y}px`;
+      group.appendChild(pulse);
+      
+      // Pin dot
+      const pin = document.createElementNS(ns, 'circle');
+      pin.setAttribute('cx', x);
+      pin.setAttribute('cy', y);
+      pin.setAttribute('r', 8);
+      pin.setAttribute('class', 'pin-destination');
+      group.appendChild(pin);
+    } else {
+      const pin = document.createElementNS(ns, 'circle');
+      pin.setAttribute('cx', x);
+      pin.setAttribute('cy', y);
+      pin.setAttribute('r', 4.5);
+      pin.setAttribute('class', 'pin-node');
+      group.appendChild(pin);
+    }
+    
+    // Text label
+    const txt = document.createElementNS(ns, 'text');
+    txt.setAttribute('x', x);
+    txt.setAttribute('y', isDest ? y - 16 : y - 10);
+    txt.setAttribute('class', isDest ? 'destination-label' : 'pin-label');
+    txt.textContent = label;
+    group.appendChild(txt);
+  }
+
+  function createRoute(group, x1, y1, x2, y2) {
+    const ns = 'http://www.w3.org/2000/svg';
+    
+    // Bow curves upwards
+    const cx = (x1 + x2) / 2;
+    const cy = Math.min(y1, y2) - 80;
+    
+    const d = `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`;
+    
+    // Route path
+    const route = document.createElementNS(ns, 'path');
+    route.setAttribute('d', d);
+    route.setAttribute('class', 'sourcing-route');
+    group.appendChild(route);
+    
+    // Flowing path
+    const flow = document.createElementNS(ns, 'path');
+    flow.setAttribute('d', d);
+    flow.setAttribute('class', 'sourcing-flow');
+    group.appendChild(flow);
+  }
+
+  // Load World Map Sourcing Overlay
+  loadWorldMap();
+}
 });
