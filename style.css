@@ -1440,3 +1440,199 @@ footer {
     height: 26px;
   }
 }
+
+/* --- 3D PRODUCT SHOWCASE GRID --- */
+.showcase-3d-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  perspective: 1200px;
+}
+
+.card-3d {
+  background-color: transparent;
+  height: 200px;
+  perspective: 1200px;
+}
+
+.card-3d-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card-3d:hover .card-3d-inner {
+  transform: rotateY(180deg);
+}
+
+.card-3d-front, .card-3d-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  background-color: var(--bg-card);
+}
+
+.card-3d-front {
+  color: var(--text-dark);
+}
+
+.card-3d-front h4 {
+  font-size: 1.05rem;
+  margin-top: 1rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+
+.hover-tip {
+  font-size: 0.7rem;
+  color: var(--accent);
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.card-3d-back {
+  background-color: var(--accent);
+  color: var(--text-light);
+  transform: rotateY(180deg);
+  text-align: center;
+}
+
+.card-3d-back h4 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+  font-family: var(--font-sans);
+}
+
+.card-3d-back p {
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+/* 3D Scene Wrapper */
+.scene-3d {
+  width: 70px;
+  height: 70px;
+  perspective: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3D Cube Container */
+.cube-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-20deg) rotateY(45deg);
+  animation: rotateCube 12s linear infinite;
+  transition: transform var(--transition-normal);
+}
+
+@keyframes rotateCube {
+  0% { transform: rotateX(-20deg) rotateY(0deg); }
+  100% { transform: rotateX(-20deg) rotateY(360deg); }
+}
+
+.cube-face {
+  position: absolute;
+  opacity: 0.9;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.08);
+}
+
+/* --- TILE 3D MODEL (Thin Flat Square) --- */
+.tile-3d-cube {
+  width: 44px;
+  height: 44px;
+}
+.tile-3d-cube .cube-face {
+  background-color: var(--accent-light);
+  border: 1.5px solid var(--accent);
+}
+.tile-3d-cube .cube-front  { width: 44px; height: 44px; transform: translateZ(3px); }
+.tile-3d-cube .cube-back   { width: 44px; height: 44px; transform: rotateY(180deg) translateZ(3px); }
+.tile-3d-cube .cube-left   { width: 6px;  height: 44px; transform: rotateY(-90deg) translateZ(3px); }
+.tile-3d-cube .cube-right  { width: 6px;  height: 44px; transform: rotateY(90deg) translateZ(41px); }
+.tile-3d-cube .cube-top    { width: 44px; height: 6px;  transform: rotateX(90deg) translateZ(3px); }
+.tile-3d-cube .cube-bottom { width: 44px; height: 6px;  transform: rotateX(-90deg) translateZ(41px); }
+
+/* --- BATHROOM SET 3D MODEL (Solid White Cuboid/Vanity) --- */
+.bath-3d-cube {
+  width: 36px;
+  height: 36px;
+}
+.bath-3d-cube .cube-face {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+}
+.bath-3d-cube .cube-front  { width: 36px; height: 36px; transform: translateZ(18px); }
+.bath-3d-cube .cube-back   { width: 36px; height: 36px; transform: rotateY(180deg) translateZ(18px); }
+.bath-3d-cube .cube-left   { width: 36px; height: 36px; transform: rotateY(-90deg) translateZ(18px); }
+.bath-3d-cube .cube-right  { width: 36px; height: 36px; transform: rotateY(90deg) translateZ(18px); }
+.bath-3d-cube .cube-top    { 
+  width: 36px; height: 36px; 
+  transform: rotateX(90deg) translateZ(18px); 
+  background-color: var(--accent-light); /* Sink basin */
+  border: 3px solid #ffffff;
+}
+.bath-3d-cube .cube-bottom { width: 36px; height: 36px; transform: rotateX(-90deg) translateZ(18px); }
+
+/* --- MIXER 3D MODEL (Metallic tall cylinder/T-shape) --- */
+.mixer-3d-cube {
+  width: 14px;
+  height: 42px;
+}
+.mixer-3d-cube .cube-face {
+  background: linear-gradient(to right, #cacaca, #898989);
+  border: 1px solid #ffffff;
+}
+.mixer-3d-cube .cube-front  { width: 14px; height: 42px; transform: translateZ(7px); }
+.mixer-3d-cube .cube-back   { width: 14px; height: 42px; transform: rotateY(180deg) translateZ(7px); }
+.mixer-3d-cube .cube-left   { width: 14px; height: 42px; transform: rotateY(-90deg) translateZ(7px); }
+.mixer-3d-cube .cube-right  { width: 14px; height: 42px; transform: rotateY(90deg) translateZ(7px); }
+.mixer-3d-cube .cube-top    { 
+  width: 14px; height: 14px; 
+  transform: rotateX(90deg) translateZ(7px); 
+  background-color: var(--accent); /* Aqua tap head */
+}
+.mixer-3d-cube .cube-bottom { width: 14px; height: 14px; transform: rotateX(-90deg) translateZ(35px); }
+
+/* --- ADHESIVE BAG 3D MODEL (Rectangular bag) --- */
+.adhesive-3d-cube {
+  width: 30px;
+  height: 44px;
+}
+.adhesive-3d-cube .cube-face {
+  background-color: #898989;
+  border: 1.5px dashed #cacaca;
+}
+.adhesive-3d-cube .cube-front  { 
+  width: 30px; height: 44px; 
+  transform: translateZ(12px); 
+  background: radial-gradient(circle, var(--accent) 20%, #898989 100%); /* bag print */
+}
+.adhesive-3d-cube .cube-back   { width: 30px; height: 44px; transform: rotateY(180deg) translateZ(12px); }
+.adhesive-3d-cube .cube-left   { width: 24px; height: 44px; transform: rotateY(-90deg) translateZ(15px); }
+.adhesive-3d-cube .cube-right  { width: 24px; height: 44px; transform: rotateY(90deg) translateZ(15px); }
+.adhesive-3d-cube .cube-top    { width: 30px; height: 24px; transform: rotateX(90deg) translateZ(12px); }
+.adhesive-3d-cube .cube-bottom { width: 30px; height: 24px; transform: rotateX(-90deg) translateZ(32px); }
+
+@media (max-width: 768px) {
+  .showcase-3d-grid {
+    margin-bottom: 3rem;
+  }
+}
