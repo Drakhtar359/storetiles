@@ -1640,17 +1640,16 @@ footer {
 /* --- GLOBAL SOURCING SECTION --- */
 .sourcing {
   padding: 8rem 0;
-  background-color: var(--bg-card);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  background: transparent;
+  border: none;
 }
 
 .map-wrapper {
-  background-color: var(--bg-dark);
+  background-color: transparent;
   border-radius: var(--border-radius-lg);
   padding: 1.5rem;
-  border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-md);
+  border: none;
+  box-shadow: none;
   overflow: hidden;
   max-width: 950px;
   margin: 0 auto;
@@ -1671,15 +1670,16 @@ footer {
 /* amCharts world.svg land path styling override */
 .land {
   fill: none !important;
-  stroke: var(--accent) !important;
-  stroke-opacity: 0.15 !important;
+  stroke: var(--text-muted) !important;
+  stroke-opacity: 0.35 !important;
   stroke-width: 0.8px !important;
-  transition: fill 0.35s ease, stroke-opacity 0.35s ease;
+  transition: fill 0.35s ease, stroke-opacity 0.35s ease, stroke 0.35s ease;
 }
 
 .land:hover {
   fill: rgba(80, 123, 140, 0.08) !important;
-  stroke-opacity: 0.5 !important;
+  stroke: var(--accent) !important;
+  stroke-opacity: 0.75 !important;
 }
 
 .sourcing-route {
