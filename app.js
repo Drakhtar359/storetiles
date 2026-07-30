@@ -449,4 +449,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // --- INSTAGRAM SLIDER TRACK BUTTON CONTROL ---
+  const track = document.querySelector('.instagram-slider-track');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  
+  if (track && prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      const itemWidth = track.firstElementChild.offsetWidth + 32;
+      track.scrollLeft -= itemWidth;
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      const itemWidth = track.firstElementChild.offsetWidth + 32;
+      track.scrollLeft += itemWidth;
+    });
+  }
 });
