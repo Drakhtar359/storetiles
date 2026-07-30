@@ -522,6 +522,7 @@ body.dark-mode .section-title {
 /* --- HERITAGE SECTION --- */
 .heritage {
   background-color: var(--bg-card);
+  padding-top: 0;
 }
 
 .story-banner-container {
