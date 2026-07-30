@@ -450,29 +450,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- INSTAGRAM SLIDER TRACK BUTTON CONTROL & RANDOM SHUFFLE ---
-  const track = document.querySelector('.instagram-slider-track');
-  const prevBtn = document.querySelector('.prev-btn');
-  const nextBtn = document.querySelector('.next-btn');
-  
-  if (track) {
-    const posts = Array.from(track.querySelectorAll('.instagram-post'));
-    if (posts.length > 0) {
-      const shuffled = posts.sort(() => 0.5 - Math.random());
-      track.innerHTML = '';
-      shuffled.forEach(post => track.appendChild(post));
-    }
-    
-    if (prevBtn && nextBtn) {
-      prevBtn.addEventListener('click', () => {
-        const itemWidth = track.firstElementChild.offsetWidth + 32;
-        track.scrollLeft -= itemWidth;
-      });
-      
-      nextBtn.addEventListener('click', () => {
-        const itemWidth = track.firstElementChild.offsetWidth + 32;
-        track.scrollLeft += itemWidth;
-      });
-    }
-  }
 });
