@@ -529,10 +529,10 @@ body.dark-mode .section-title {
   margin: 0 auto 5rem;
   height: 380px;
   overflow: hidden;
-  border-radius: var(--border-radius-lg);
-  border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-md);
   position: relative;
+  border: none;
+  box-shadow: none;
+  background: transparent;
 }
 
 /* Linear gradient overlay blending bottom into background card color */
@@ -552,7 +552,7 @@ body.dark-mode .section-title {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%; /* Shift crop 20% higher */
+  object-position: center 40%; /* Half way between 50% and 30% */
   transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease-out;
   will-change: transform, opacity;
 }
