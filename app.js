@@ -421,4 +421,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- STORY BANNER SCROLL DISSOLVE EFFECT ---
+  window.addEventListener('scroll', () => {
+    const banner = document.querySelector('.story-banner-img');
+    const card = document.querySelector('.story-floating-card');
+    if (banner) {
+      const parent = banner.parentElement;
+      const rect = parent.getBoundingClientRect();
+      
+      const startFade = 100;
+      const fadeDist = 350;
+      
+      if (rect.top <= startFade) {
+        const progress = Math.max(0, Math.min(1, (startFade - rect.top) / fadeDist));
+        banner.style.opacity = (1 - progress).toFixed(3);
+        banner.style.transform = `scale(${1 + progress * 0.04})`;
+        
+        if (card) {
+          card.style.opacity = (1 - progress).toFixed(3);
+        }
+      } else {
+        banner.style.opacity = "1";
+        banner.style.transform = "scale(1)";
+        if (card) {
+          card.style.opacity = "1";
+        }
+      }
+    }
+  });
 });

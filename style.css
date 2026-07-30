@@ -532,24 +532,67 @@ body.dark-mode .section-title {
   border-radius: var(--border-radius-lg);
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+/* Linear gradient overlay blending bottom into background card color */
+.story-banner-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35%;
+  background: linear-gradient(to bottom, transparent, var(--bg-card));
+  pointer-events: none;
+  z-index: 2;
 }
 
 .story-banner-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  object-position: center 30%; /* Shift crop 20% higher */
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease-out;
+  will-change: transform, opacity;
 }
 
 .story-banner-container:hover .story-banner-img {
   transform: scale(1.03);
 }
 
+/* Floating card on story banner */
+.story-floating-card {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1.2rem 1.5rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  max-width: 260px;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
+}
+
+body.dark-mode .story-floating-card {
+  background: rgba(19, 25, 38, 0.85);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
 @media (max-width: 768px) {
   .story-banner-container {
     height: 240px;
     margin-bottom: 3.5rem;
+  }
+  .story-floating-card {
+    display: none;
   }
 }
 
