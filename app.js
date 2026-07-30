@@ -63,6 +63,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // --- MOBILE TAP-TO-FLIP FOR 3D CARDS ---
+  document.querySelectorAll('.card-3d').forEach(card => {
+    card.addEventListener('click', function() {
+      if (window.innerWidth <= 768) {
+        this.classList.toggle('active');
+      }
+    });
+  });
+
   // --- STICKY HEADER & ACTIVE SECTIONS ---
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {

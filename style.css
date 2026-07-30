@@ -1439,6 +1439,41 @@ footer {
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
   }
+
+  /* --- MOBILE SPECIFIC FIXES (NO HOVER, 1-COLUMN GRID, HIDE INSTAGRAM) --- */
+  .instagram-feed {
+    display: none !important;
+  }
+
+  .showcase-3d-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 420px;
+    margin: 0 auto 3rem;
+  }
+
+  .card-3d:hover .card-3d-inner {
+    transform: none !important;
+  }
+
+  .card-3d.active .card-3d-inner {
+    transform: rotateY(180deg) !important;
+  }
+
+  /* Disable mobile hover scales and sticky states */
+  .btn:hover,
+  .theme-toggle:hover,
+  .social-link:hover,
+  .whatsapp-float:hover,
+  .logo:hover .logo-img,
+  .hero-image-wrapper:hover .hero-image,
+  .story-banner-container:hover .story-banner-img {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .nav-item a:hover::after {
+    width: 0 !important;
+  }
 }
 
 @media (max-width: 480px) {
